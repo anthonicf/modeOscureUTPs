@@ -1,0 +1,93 @@
+/* ==========================================================================
+   OSCURE UTP - CORE DARK THEME VARIABLES & GLOBAL STYLES
+   ========================================================================== */
+
+:root {
+  --oscure-bg-base: #101014;
+  --oscure-bg-surface: #16161c;
+  --oscure-bg-card: #1e1e26;
+  --oscure-bg-card-hover: #262632;
+  --oscure-bg-input: #22222c;
+  
+  --oscure-border-subtle: #242430;
+  --oscure-border: #2e2e3c;
+  --oscure-border-strong: #3f3f50;
+
+  --oscure-text-primary: #f8fafc;
+  --oscure-text-secondary: #cbd5e1;
+  --oscure-text-muted: #94a3b8;
+  --oscure-text-disabled: #64748b;
+
+  --oscure-accent: #6366f1;
+  --oscure-accent-hover: #4f46e5;
+  --oscure-accent-light: #818cf8;
+  --oscure-accent-glow: rgba(99, 102, 241, 0.35);
+  --oscure-accent-subtle: rgba(99, 102, 241, 0.15);
+  
+  --oscure-cyan: #38bdf8;
+  --oscure-green: #34d399;
+  --oscure-yellow: #fbbf24;
+  --oscure-red: #f87171;
+
+  --oscure-brightness: 100%;
+  --oscure-contrast: 100%;
+}
+
+/* ==========================================================================
+   ACTIVACIÓN GLOBAL
+   ========================================================================== */
+
+html[data-oscure-utp="active"] {
+  background-color: var(--oscure-bg-base) !important;
+  color-scheme: dark !important;
+  filter: brightness(var(--oscure-brightness, 100%)) contrast(var(--oscure-contrast, 100%));
+}
+
+html[data-oscure-utp="active"] body {
+  background-color: var(--oscure-bg-base) !important;
+  color: var(--oscure-text-primary) !important;
+}
+
+/* Selección de texto */
+html[data-oscure-utp="active"] ::selection {
+  background-color: var(--oscure-accent, #6366f1) !important;
+  color: #ffffff !important;
+}
+
+/* Barra de desplazamiento moderna y oscura */
+html[data-oscure-utp="active"] {
+  scrollbar-color: #38384a var(--oscure-bg-base);
+  scrollbar-width: thin;
+}
+
+html[data-oscure-utp="active"] ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html[data-oscure-utp="active"] ::-webkit-scrollbar-track {
+  background: var(--oscure-bg-base);
+}
+
+html[data-oscure-utp="active"] ::-webkit-scrollbar-thumb {
+  background: #2f2f40;
+  border-radius: 5px;
+  border: 2px solid var(--oscure-bg-base);
+}
+
+html[data-oscure-utp="active"] ::-webkit-scrollbar-thumb:hover {
+  background: #424258;
+}
+
+/* ==========================================================================
+   PRESERVACIÓN ESTRICTA DE MEDIOS (Evitar distorsión de fotos, videos y PDFs)
+   ========================================================================== */
+
+html[data-oscure-utp="active"] img:not(.oscure-invert),
+html[data-oscure-utp="active"] video,
+html[data-oscure-utp="active"] iframe,
+html[data-oscure-utp="active"] canvas,
+html[data-oscure-utp="active"] embed,
+html[data-oscure-utp="active"] object {
+  filter: none !important;
+}

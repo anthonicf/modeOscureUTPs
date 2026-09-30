@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oscure UTP</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="logo-group">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="brand-title">Oscure UTP</h1>
+          <p class="brand-subtitle">Modo Oscuro Inteligente</p>
+        </div>
+      </div>
+      <div id="siteBadge" class="site-badge">UTP</div>
+    </header>
+
+    <!-- Master Switch Card -->
+    <div class="toggle-card">
+      <div class="toggle-info">
+        <span class="toggle-label">Modo Oscuro</span>
+        <span id="toggleStatusText" class="toggle-sub">Activado</span>
+      </div>
+      <label class="switch" for="themeToggle">
+        <input type="checkbox" id="themeToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Hide Banner Toggle Card -->
+    <div class="toggle-card sub-toggle">
+      <div class="toggle-info">
+        <span class="toggle-label">Ocultar Publicidad</span>
+        <span id="bannerStatusText" class="toggle-sub">Oculto</span>
+      </div>
+      <label class="switch" for="bannerToggle">
+        <input type="checkbox" id="bannerToggle" checked>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <!-- Accent Color Selector Card -->
+    <div class="controls-card accent-card">
+      <div class="control-header">
+        <label>Color de Acento</label>
+        <span id="accentName" class="val-badge">Índigo</span>
+      </div>
+      <div class="accent-palette" id="accentPalette">
+        <button type="button" class="color-dot active" data-color="#6366f1" data-name="Índigo" style="--dot-color: #6366f1;" title="Índigo (Clásico)"></button>
+        <button type="button" class="color-dot" data-color="#06b6d4" data-name="Cian" style="--dot-color: #06b6d4;" title="Cian"></button>
+        <button type="button" class="color-dot" data-color="#10b981" data-name="Esmeralda" style="--dot-color: #10b981;" title="Esmeralda"></button>
+        <button type="button" class="color-dot" data-color="#8b5cf6" data-name="Púrpura" style="--dot-color: #8b5cf6;" title="Púrpura"></button>
+        <button type="button" class="color-dot" data-color="#ec4899" data-name="Rosa" style="--dot-color: #ec4899;" title="Rosa"></button>
+        <button type="button" class="color-dot" data-color="#f59e0b" data-name="Ámbar" style="--dot-color: #f59e0b;" title="Ámbar"></button>
+        <label class="color-picker-wrapper" title="Color personalizado">
+          <input type="color" id="customColorPicker" value="#6366f1">
+          <span class="picker-swatch" id="customSwatch">🎨</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Sliders Section -->
+    <div class="controls-card">
+      <div class="control-row">
+        <div class="control-header">
+          <label for="brightnessSlider">Brillo</label>
+          <span id="brightnessVal" class="val-badge">100%</span>
+        </div>
+        <input type="range" id="brightnessSlider" min="70" max="120" value="100" class="range-slider">
+      </div>
+
+      <div class="control-row">
+        <div class="control-header">
+          <label for="contrastSlider">Contraste</label>
+          <span id="contrastVal" class="val-badge">100%</span>
+        </div>
+        <input type="range" id="contrastSlider" min="80" max="130" value="100" class="range-slider">
+      </div>
+
+      <button id="resetBtn" class="reset-btn" type="button">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+          <path d="M3 3v5h5"></path>
+        </svg>
+        Restablecer ajustes
+      </button>
+    </div>
+
+    <!-- Footer info -->
+    <footer class="popup-footer">
+      <div class="shortcut-hint">
+        <span class="kbd">Alt</span> + <span class="kbd">Shift</span> + <span class="kbd">D</span>
+        <span class="hint-text">para alternar rápido</span>
+      </div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

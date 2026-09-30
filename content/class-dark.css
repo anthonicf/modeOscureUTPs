@@ -1,0 +1,787 @@
+/* ==========================================================================
+   OSCURE UTP - UTP+CLASS DESIGN SYSTEM OVERRIDES (class.utp.edu.pe)
+   Adaptación completa de tokens de diseño, Tailwind y React Chunks
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. REEMPLAZO DE DESIGN TOKENS UTP (CSS CUSTOM PROPERTIES)
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] {
+  /* Fondos y Superficies */
+  --theme-01: #121218 !important;
+  --theme-02: #181822 !important;
+  --theme-03: #e2e8f0 !important;
+  --theme-04: #f8fafc !important;
+
+  --background-01: #161722 !important;  /* Fondos de tarjetas principales (era #fff) */
+  --background-02: #141520 !important;  /* Fondos secundarios / widgets (era #eaf7ff) */
+  --background-03: #0f1016 !important;  /* Fondo general de la página (era #f4f4f4) */
+  --background-04: #181926 !important;
+  --background-05: #1a1b28 !important;
+
+  /* Neutros UTP: neutral-03 es texto oscuro (#161616), neutral-04 es blanco (#fff) */
+  --neutral-01: #94a3b8 !important;     /* Textos secundarios / subtítulos / bordes */
+  --neutral-02: #cbd5e1 !important;     /* Textos normales del cuerpo (era #525252) */
+  --neutral-03: #f8fafc !important;     /* TÍTULOS Y TEXTO PRINCIPAL -> AHORA BLANCO */
+  --neutral-04: #161722 !important;     /* Contenedores blancos -> AHORA OSCUROS */
+  --neutral-05: #141520 !important;     /* Fondo de widgets */
+
+  /* Colores primarios: primary-dark DEBE permanecer oscuro para el sidebar y headers */
+  --primary-dark: #0b0d18 !important;   /* Fondo del Sidebar y elementos oscuros nativos */
+  --primary-90: var(--oscure-accent-light, #818cf8) !important;
+  --primary-80: var(--oscure-accent, #6366f1) !important;
+  --primary-70: var(--oscure-accent-hover, #4f46e5) !important;
+  --primary-60: var(--oscure-accent, #6366f1) !important;
+  --primary-50: var(--oscure-accent-light, #818cf8) !important;
+  --primary-20: #25283c !important;
+  --primary-10: #1a1b2b !important;
+
+  /* Grises y medios */
+  --mid-grey-10: #0f1016 !important;    /* Fondo del wrapper principal (era #f2f4f8) */
+  --mid-grey-05: #181824 !important;
+  --mid-grey-20: #20202e !important;
+  --mid-grey-30: #2c2c3e !important;
+  --mid-grey-40: #64748b !important;
+  --mid-grey-70: #94a3b8 !important;
+  --mid-grey-80: #cbd5e1 !important;
+  --mid-grey-90: #f1f5f9 !important;
+  --mid-grey-dark: #f8fafc !important;
+
+  --gris-10: #121218 !important;
+  --gris-20: #1a1a24 !important;
+  --gris-30: #262634 !important;
+  --gris-40: #64748b !important;
+  --gris-50: #94a3b8 !important;
+  --gris-60: #cbd5e1 !important;
+  --gris-70: #e2e8f0 !important;
+  --gris-80: #f1f5f9 !important;
+  --gris-90: #f8fafc !important;
+  --gris-dark: #ffffff !important;
+
+  --white: #161722 !important;
+  --black: #ffffff !important;
+  --dark-teal: #94a3b8 !important;
+  --navy: #0b0d18 !important;
+  --bg-floating-icon: #1f2438 !important;
+  --disabled-background: #1e1e2a !important;
+  --disabled-text: #475569 !important;
+  --disabled-text-02: #64748b !important;
+  --placeholder-text: #64748b !important;
+  --border-active-sidebar: #f94c61 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. TEXTOS Y FONDOS PRIMARIOS (Resolución de conflicto de tokens)
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] .text-primary-dark {
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] .text-neutral-03 {
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] .bg-primary-dark {
+  background-color: #0b0d18 !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. BARRA LATERAL (SIDEBAR) - ESTILO NOCTURNO DEFINITIVO
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"],
+html[data-oscure-utp="active"] aside,
+html[data-oscure-utp="active"] [class*="sidebar" i],
+html[data-oscure-utp="active"] [class*="Sidebar" i],
+html[data-oscure-utp="active"] [class*="MenuLateral" i] {
+  background-color: #0b0d18 !important;
+  border-right: 1px solid #1a1e32 !important;
+}
+
+/* Enlaces e items inactivos del sidebar (Chat, Calendario, Ayuda, etc.) */
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:not([class*="active" i]),
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] li:not([class*="active" i]),
+html[data-oscure-utp="active"] aside a:not([class*="active" i]),
+html[data-oscure-utp="active"] aside li:not([class*="active" i]) {
+  background-color: transparent !important;
+  color: #cbd5e1 !important;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:not([class*="active" i]) p,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:not([class*="active" i]) span,
+html[data-oscure-utp="active"] aside a:not([class*="active" i]) p,
+html[data-oscure-utp="active"] aside a:not([class*="active" i]) span {
+  color: #cbd5e1 !important;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:not([class*="active" i]) svg,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] li:not([class*="active" i]) svg,
+html[data-oscure-utp="active"] aside a:not([class*="active" i]) svg {
+  stroke: #818cf8 !important;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:hover,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] li:hover,
+html[data-oscure-utp="active"] aside a:hover {
+  background-color: var(--oscure-accent-subtle, rgba(99, 102, 241, 0.16)) !important;
+  color: #ffffff !important;
+  border-radius: 8px;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] a:hover svg,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] li:hover svg {
+  stroke: #ffffff !important;
+}
+
+/* Item ACTIVO ("Cursos") en el sidebar */
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] [class*="active" i],
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] [class*="selected" i],
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] .bg-neutral-04,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] .bg-white,
+html[data-oscure-utp="active"] aside li[class*="active" i],
+html[data-oscure-utp="active"] aside [class*="activeItem" i] {
+  background-color: #1a1e32 !important;
+  border-left: 3px solid var(--oscure-accent, #6366f1) !important;
+  border-radius: 0 8px 8px 0 !important;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] [class*="active" i] *,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] .bg-neutral-04 *,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] .bg-white *,
+html[data-oscure-utp="active"] aside li[class*="active" i] * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+}
+
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] hr,
+html[data-oscure-utp="active"] [data-oscure-sidebar="true"] [class*="divider" i],
+html[data-oscure-utp="active"] aside hr {
+  border-color: #1e2238 !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. CUERPO Y LAYOUT GENERAL DE LA PÁGINA
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] body,
+html[data-oscure-utp="active"] #root,
+html[data-oscure-utp="active"] .bg-03,
+html[data-oscure-utp="active"] [class*="main" i] {
+  background-color: #0f1016 !important;
+  color: #f8fafc !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. BARRA SUPERIOR (HEADER)
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] header,
+html[data-oscure-utp="active"] [class*="header" i],
+html[data-oscure-utp="active"] nav[class*="header" i] {
+  background-color: #12121a !important;
+  border-bottom: 1px solid #222232 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-oscure-utp="active"] header h1,
+html[data-oscure-utp="active"] header h2,
+html[data-oscure-utp="active"] header h3,
+html[data-oscure-utp="active"] header p,
+html[data-oscure-utp="active"] header span {
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] header span:last-child {
+  color: #94a3b8 !important;
+}
+
+html[data-oscure-utp="active"] header svg {
+  stroke: #e2e8f0 !important;
+}
+
+/* ==========================================================================
+   6. ELIMINAR COMPLETAMENTE EL BANNER DE PUBLICIDAD / ANUNCIOS
+   Por defecto se elimina sin dejar ningún espacio en blanco o residual.
+   ========================================================================== */
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-slider,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-list,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-track,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-slide,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-dots,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .slick-arrow,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) [class*="slick-slider"],
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) [class*="slick-initialized"],
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) [data-oscure-banner="true"],
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .MVAic,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .dqpxyc,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .sc-bAeIUo,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .jXktXU,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .swiper,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .swiper-container,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) .swiper-wrapper,
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) [class*="swiper-pagination"],
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) div:not(#root):not(body):has(> .slick-slider),
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) div:not(#root):not(body):has(> div > .slick-slider):not(:has(h2)):not(:has(h3)):not(:has(select)),
+html[data-oscure-utp="active"]:not([data-oscure-show-banner="true"]) div:not(#root):not(body):has(> div > div > .slick-slider):not(:has(h2)):not(:has(h3)):not(:has(select)) {
+  display: none !important;
+  height: 0 !important;
+  min-height: 0 !important;
+  max-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. SECCIÓN "MIS CURSOS" Y TARJETAS DE CURSO
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] h2,
+html[data-oscure-utp="active"] h3,
+html[data-oscure-utp="active"] [class*="title" i] {
+  color: #ffffff !important;
+}
+
+html[data-oscure-utp="active"] select,
+html[data-oscure-utp="active"] [class*="select" i],
+html[data-oscure-utp="active"] [class*="filter" i] {
+  background-color: #181824 !important;
+  color: #f8fafc !important;
+  border: 1px solid #2e2e42 !important;
+  border-radius: 8px !important;
+}
+
+html[data-oscure-utp="active"] [class*="period" i],
+html[data-oscure-utp="active"] [class*="cycle" i],
+html[data-oscure-utp="active"] p.text-neutral-01,
+html[data-oscure-utp="active"] span.text-neutral-01 {
+  color: #94a3b8 !important;
+}
+
+html[data-oscure-utp="active"] hr,
+html[data-oscure-utp="active"] [class*="divider" i],
+html[data-oscure-utp="active"] .border-neutral-02 {
+  border-color: #242436 !important;
+}
+
+/* Tarjetas de asignatura */
+html[data-oscure-utp="active"] [class*="course" i][class*="card" i],
+html[data-oscure-utp="active"] [class*="CourseCard" i],
+html[data-oscure-utp="active"] [class*="cardCourse" i],
+html[data-oscure-utp="active"] [class*="card-course" i],
+html[data-oscure-utp="active"] [class*="CourseItem" i],
+html[data-oscure-utp="active"] [class*="card" i]:not(header *):not(aside *) {
+  background-color: #161722 !important;
+  border: 1px solid #28283a !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  overflow: hidden !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [class*="course" i][class*="card" i]:hover,
+html[data-oscure-utp="active"] [class*="CourseCard" i]:hover,
+html[data-oscure-utp="active"] [class*="cardCourse" i]:hover,
+html[data-oscure-utp="active"] [class*="card-course" i]:hover,
+html[data-oscure-utp="active"] [class*="CourseItem" i]:hover,
+html[data-oscure-utp="active"] [class*="card" i]:not(header *):not(aside *):hover {
+  border-color: var(--oscure-accent, #6366f1) !important;
+  box-shadow: 0 8px 26px var(--oscure-accent-glow, rgba(99, 102, 241, 0.25)) !important;
+}
+
+/* Títulos de curso dentro de las tarjetas */
+html[data-oscure-utp="active"] [class*="card" i] h3,
+html[data-oscure-utp="active"] [class*="card" i] h4,
+html[data-oscure-utp="active"] [class*="card" i] a,
+html[data-oscure-utp="active"] [class*="card" i] .text-neutral-03,
+html[data-oscure-utp="active"] [class*="card" i] .text-primary-dark {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+html[data-oscure-utp="active"] [class*="card" i] p,
+html[data-oscure-utp="active"] [class*="card" i] span,
+html[data-oscure-utp="active"] [class*="card" i] .text-neutral-01,
+html[data-oscure-utp="active"] [class*="card" i] .text-neutral-02 {
+  color: #94a3b8 !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. WIDGET DERECHO: "ACTIVIDADES SEMANALES"
+   -------------------------------------------------------------------------- */
+/* Contenedor principal del widget */
+html[data-oscure-utp="active"] [data-oscure-activities="true"],
+html[data-oscure-utp="active"] .sc-eXEjpC,
+html[data-oscure-utp="active"] .dOxLTp,
+html[data-oscure-utp="active"] div:has(> span[data-testid="header"]),
+html[data-oscure-utp="active"] [class*="actividades" i],
+html[data-oscure-utp="active"] [class*="Actividades" i] {
+  background-color: #12131d !important;
+  border: 1px solid #24263a !important;
+  border-radius: 12px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35) !important;
+  overflow: hidden !important;
+}
+
+/* Encabezado: "Actividades semanales" */
+html[data-oscure-utp="active"] [data-oscure-activities-header="true"],
+html[data-oscure-utp="active"] span[data-testid="header"],
+html[data-oscure-utp="active"] [data-testid="header"],
+html[data-oscure-utp="active"] .sc-RefOD,
+html[data-oscure-utp="active"] .cNHTdT {
+  background-color: #0f1018 !important;
+  border-bottom: 1px solid #24263a !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+html[data-oscure-utp="active"] span[data-testid="header"] *,
+html[data-oscure-utp="active"] [data-testid="header"] * {
+  color: #ffffff !important;
+}
+
+html[data-oscure-utp="active"] span[data-testid="header"] svg,
+html[data-oscure-utp="active"] [data-testid="header"] svg {
+  stroke: #a5b4fc !important;
+}
+
+/* Contenedor de la lista de tarjetas (elimina el fondo blanco rgb(255,255,255)) */
+html[data-oscure-utp="active"] [data-oscure-activities-list="true"],
+html[data-oscure-utp="active"] .sc-ibxdXY,
+html[data-oscure-utp="active"] .evKorX,
+html[data-oscure-utp="active"] div:has(> a[data-testid="card"]) {
+  background-color: #12131d !important;
+  color: #f8fafc !important;
+  border-bottom-left-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+}
+
+/* Scrollbar estilizada para la lista de actividades */
+html[data-oscure-utp="active"] .evKorX::-webkit-scrollbar,
+html[data-oscure-utp="active"] [data-oscure-activities-list="true"]::-webkit-scrollbar {
+  width: 6px !important;
+}
+
+html[data-oscure-utp="active"] .evKorX::-webkit-scrollbar-track,
+html[data-oscure-utp="active"] [data-oscure-activities-list="true"]::-webkit-scrollbar-track {
+  background: #12131d !important;
+}
+
+html[data-oscure-utp="active"] .evKorX::-webkit-scrollbar-thumb,
+html[data-oscure-utp="active"] [data-oscure-activities-list="true"]::-webkit-scrollbar-thumb {
+  background: #2b2e44 !important;
+  border-radius: 3px !important;
+}
+
+html[data-oscure-utp="active"] .evKorX::-webkit-scrollbar-thumb:hover,
+html[data-oscure-utp="active"] [data-oscure-activities-list="true"]::-webkit-scrollbar-thumb:hover {
+  background: var(--oscure-accent, #4f46e5) !important;
+}
+
+/* Tarjeta individual de actividad */
+html[data-oscure-utp="active"] [data-oscure-activity-card="true"],
+html[data-oscure-utp="active"] a[data-testid="card"],
+html[data-oscure-utp="active"] [data-testid="card"],
+html[data-oscure-utp="active"] .sc-bsbRJL,
+html[data-oscure-utp="active"] .djccpv {
+  background-color: #181926 !important;
+  border: 1px solid #282a3e !important;
+  border-radius: 10px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+}
+
+html[data-oscure-utp="active"] a[data-testid="card"]:hover,
+html[data-oscure-utp="active"] [data-testid="card"]:hover,
+html[data-oscure-utp="active"] .djccpv:hover {
+  background-color: #202234 !important;
+  border-color: var(--oscure-accent, #6366f1) !important;
+  box-shadow: 0 4px 16px var(--oscure-accent-glow, rgba(99, 102, 241, 0.2)) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Tipo de actividad: "Tarea calificada", "Evaluación", etc. */
+html[data-oscure-utp="active"] [data-testid="card"] > div:first-child,
+html[data-oscure-utp="active"] [data-testid="card"] span:first-of-type {
+  color: #94a3b8 !important;
+  font-size: 0.8rem !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="card"] svg {
+  stroke: #94a3b8 !important;
+}
+
+/* Título de la actividad: "(AC-S08-PA) - Presenta..." */
+html[data-oscure-utp="active"] [data-testid="card"] h4,
+html[data-oscure-utp="active"] [data-testid="card"] h5,
+html[data-oscure-utp="active"] [data-testid="card"] strong,
+html[data-oscure-utp="active"] [data-testid="card"] p:first-of-type {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+/* Nombre del curso: "SEGURIDAD INFORMÁTICA" */
+html[data-oscure-utp="active"] [data-testid="card"] p,
+html[data-oscure-utp="active"] [data-testid="card"] span {
+  color: #cbd5e1 !important;
+}
+
+/* Insignia / Pill de Estado: "Por entregar", "Entregado", etc. */
+html[data-oscure-utp="active"] [data-testid="card"] div:has(> svg):not(:first-child),
+html[data-oscure-utp="active"] [data-testid="card"] [class*="pill" i],
+html[data-oscure-utp="active"] [data-testid="card"] [class*="badge" i],
+html[data-oscure-utp="active"] [data-testid="card"] [class*="status" i] {
+  background-color: rgba(245, 158, 11, 0.16) !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+  border-radius: 9999px !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="card"] div:has(> svg):not(:first-child) *,
+html[data-oscure-utp="active"] [data-testid="card"] [class*="pill" i] *,
+html[data-oscure-utp="active"] [data-testid="card"] [class*="badge" i] *,
+html[data-oscure-utp="active"] [data-testid="card"] [class*="status" i] * {
+  color: #fbbf24 !important;
+  stroke: #fbbf24 !important;
+  font-weight: 600 !important;
+}
+
+/* Fecha de vencimiento y puntaje */
+html[data-oscure-utp="active"] [data-testid="card"] [class*="date" i],
+html[data-oscure-utp="active"] [data-testid="card"] [class*="due" i],
+html[data-oscure-utp="active"] [data-testid="card"] [class*="points" i] {
+  color: #94a3b8 !important;
+  font-size: 0.8rem !important;
+}
+
+/* Bordes internos de actividades */
+html[data-oscure-utp="active"] [data-oscure-activities="true"] *,
+html[data-oscure-utp="active"] [data-testid="header"] *,
+html[data-oscure-utp="active"] [data-testid="card"] * {
+  border-color: #282a3e !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. INPUTS, SELECTS, MODALES Y CHAT
+   -------------------------------------------------------------------------- */
+html[data-oscure-utp="active"] input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
+html[data-oscure-utp="active"] select,
+html[data-oscure-utp="active"] textarea {
+  background-color: #1a1a26 !important;
+  color: #f8fafc !important;
+  border: 1px solid #2e2e42 !important;
+}
+
+html[data-oscure-utp="active"] #modal-root > div,
+html[data-oscure-utp="active"] [class*="Modal" i],
+html[data-oscure-utp="active"] [class*="modal" i] {
+  background-color: #161724 !important;
+  border: 1px solid #2c2d42 !important;
+  color: #f8fafc !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8) !important;
+}
+
+/* --------------------------------------------------------------------------
+   10. VISTA INTERNA DE ASIGNATURAS / CURSOS (CONTENIDO, SÍLABO, TAREAS, FOROS, NOTAS)
+   -------------------------------------------------------------------------- */
+
+/* Layout general del curso y contenedor principal */
+html[data-oscure-utp="active"] #layout-base,
+html[data-oscure-utp="active"] #sub-layout,
+html[data-oscure-utp="active"] [data-testid="sub-layout"],
+html[data-oscure-utp="active"] [data-main-scroll="true"],
+html[data-oscure-utp="active"] [class*="layout-base" i],
+html[data-oscure-utp="active"] [class*="sub-layout" i] {
+  background-color: #0d0e15 !important;
+  color: #f8fafc !important;
+}
+
+/* Barra superior de pestañas del curso (Sílabo, Contenido, Evaluaciones, Tareas, etc.) */
+html[data-oscure-utp="active"] [data-testid="sub-header"],
+html[data-oscure-utp="active"] [data-testid="sub-header"] > div,
+html[data-oscure-utp="active"] [data-sticky-top-overlay="true"].bg-primary-10 {
+  background-color: #12131d !important;
+  border-bottom: 1px solid #222436 !important;
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="sub-header"] a,
+html[data-oscure-utp="active"] [data-testid="sub-header"] button,
+html[data-oscure-utp="active"] [data-testid="sub-header"] span {
+  color: #94a3b8 !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="sub-header"] a:hover,
+html[data-oscure-utp="active"] [data-testid="sub-header"] button:hover {
+  color: #ffffff !important;
+  background-color: var(--oscure-accent-subtle, rgba(99, 102, 241, 0.12)) !important;
+  border-radius: 6px !important;
+}
+
+/* Pestaña activa del curso (ej. "Contenido") */
+html[data-oscure-utp="active"] [data-testid="sub-header"] [class*="active" i],
+html[data-oscure-utp="active"] [data-testid="sub-header"] [class*="selected" i],
+html[data-oscure-utp="active"] [data-testid="sub-header"] a[aria-current="page"],
+html[data-oscure-utp="active"] [data-testid="sub-header"] button[aria-current="page"] {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  border-bottom: 3px solid var(--oscure-accent, #6366f1) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="sub-header"] [class*="active" i] *,
+html[data-oscure-utp="active"] [data-testid="sub-header"] a[aria-current="page"] * {
+  color: #ffffff !important;
+}
+
+/* Tarjeta principal de contenido de la semana (.sc-dcOKER, .DIRcG) */
+html[data-oscure-utp="active"] .sc-dcOKER,
+html[data-oscure-utp="active"] .DIRcG,
+html[data-oscure-utp="active"] [class*="DIRcG"],
+html[data-oscure-utp="active"] [class*="dcOKER"],
+html[data-oscure-utp="active"] [data-oscure-content-card="true"] {
+  background-color: #151624 !important;
+  border: 1px solid #26283c !important;
+  border-radius: 14px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Sobrescritura de elementos con fondo blanco nativo o en línea */
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background-color: rgb(255, 255, 255)"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background-color:rgb(255, 255, 255)"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background-color: #fff"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background-color: white"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background: rgb(255, 255, 255)"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background:#fff"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="background:white"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [data-oscure-neutralized-bg="true"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] .bg-white,
+html[data-oscure-utp="active"] [data-main-scroll="true"] .bg-neutral-05 {
+  background-color: #151624 !important;
+  color: #f8fafc !important;
+  border-color: #26283c !important;
+}
+
+/* Tipografía de contenido del curso */
+html[data-oscure-utp="active"] .DIRcG h1,
+html[data-oscure-utp="active"] .DIRcG h2,
+html[data-oscure-utp="active"] .DIRcG h3,
+html[data-oscure-utp="active"] .DIRcG h4,
+html[data-oscure-utp="active"] [data-main-scroll="true"] h1,
+html[data-oscure-utp="active"] [data-main-scroll="true"] h2,
+html[data-oscure-utp="active"] [data-main-scroll="true"] h3,
+html[data-oscure-utp="active"] [data-main-scroll="true"] h4 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+html[data-oscure-utp="active"] .DIRcG p,
+html[data-oscure-utp="active"] .DIRcG span,
+html[data-oscure-utp="active"] [data-main-scroll="true"] p,
+html[data-oscure-utp="active"] [data-main-scroll="true"] li {
+  color: #cbd5e1 !important;
+  line-height: 1.6 !important;
+}
+
+/* Viñetas de listas con el color de acento */
+html[data-oscure-utp="active"] .DIRcG li::marker,
+html[data-oscure-utp="active"] [data-main-scroll="true"] li::marker {
+  color: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* Enlaces dentro del contenido */
+html[data-oscure-utp="active"] .DIRcG a,
+html[data-oscure-utp="active"] [data-main-scroll="true"] a:not([class*="btn" i]) {
+  color: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* Sub-bloques y contenedores internos de la semana (Logro, Importancia, Temas) */
+html[data-oscure-utp="active"] .DIRcG > div:not([class*="absolute"]),
+html[data-oscure-utp="active"] [class*="DIRcG"] > div:not([class*="absolute"]) {
+  background-color: #1a1c2c !important;
+  border: 1px solid #282a3e !important;
+  border-radius: 10px !important;
+  color: #f8fafc !important;
+}
+
+/* Badges e insignias de estado y tipo de material (Material, HTML, Revisado, etc.) */
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="badge" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="tag" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="chip" i] {
+  background-color: #222436 !important;
+  border: 1px solid #32354e !important;
+  color: #cbd5e1 !important;
+  border-radius: 6px !important;
+}
+
+/* Badge de "Revisado" / completado (Verde esmeralda) */
+html[data-oscure-utp="active"] [data-main-scroll="true"] div:has(> svg):has(span):not([data-testid]),
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="reviewed" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="check" i] {
+  background-color: rgba(16, 185, 129, 0.16) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  color: #34d399 !important;
+}
+
+html[data-oscure-utp="active"] [data-main-scroll="true"] div:has(> svg):has(span):not([data-testid]) svg {
+  stroke: #34d399 !important;
+}
+
+/* Tablas en Evaluaciones, Tareas y Notas */
+html[data-oscure-utp="active"] [data-main-scroll="true"] table {
+  background-color: #151624 !important;
+  border: 1px solid #26283c !important;
+  border-radius: 10px !important;
+  color: #f8fafc !important;
+  overflow: hidden !important;
+}
+
+html[data-oscure-utp="active"] [data-main-scroll="true"] thead,
+html[data-oscure-utp="active"] [data-main-scroll="true"] th {
+  background-color: #1a1c2c !important;
+  color: #ffffff !important;
+  border-bottom: 1px solid #282a3e !important;
+  font-weight: 600 !important;
+}
+
+html[data-oscure-utp="active"] [data-main-scroll="true"] td,
+html[data-oscure-utp="active"] [data-main-scroll="true"] tr {
+  border-color: #24263a !important;
+  color: #cbd5e1 !important;
+}
+
+html[data-oscure-utp="active"] [data-main-scroll="true"] tbody tr:hover {
+  background-color: #1e2032 !important;
+}
+
+/* Foros de discusión (Hilos, Respuestas y Comentarios) */
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="forum" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="thread" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="comment" i] {
+  background-color: #171828 !important;
+  border: 1px solid #282a3e !important;
+  border-radius: 10px !important;
+  color: #f8fafc !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. BLOQUES DE SEMANAS, MÓDULOS Y ACORDEONES (SectionContentStudent)
+   -------------------------------------------------------------------------- */
+
+/* Contenedor general de cada semana (transparente, sin bordes dobles) */
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i],
+html[data-oscure-utp="active"] [class*="IWPHCN" i],
+html[data-oscure-utp="active"] [class*="esExBO" i] {
+  background-color: transparent !important;
+  border: none !important;
+  color: #f8fafc !important;
+}
+
+/* Fila / Tarjeta interactiva de la semana (table-item) */
+html[data-oscure-utp="active"] [data-testid="table-item"],
+html[data-oscure-utp="active"] [data-oscure-week-block="true"] {
+  background-color: #151624 !important;
+  border: 1px solid #26283c !important;
+  border-radius: 10px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  margin-bottom: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Efecto hover interactivo sobre las semanas */
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover {
+  background-color: #1c1d2e !important;
+  border-color: var(--oscure-accent, #6366f1) !important;
+  box-shadow: 0 4px 16px var(--oscure-accent-glow, rgba(99, 102, 241, 0.25)) !important;
+}
+
+/* Títulos de las semanas ("Semana 01", "Semana 02", "Información del curso") */
+html[data-oscure-utp="active"] [data-testid="table-item"] p,
+html[data-oscure-utp="active"] [data-testid="table-item"] span,
+html[data-oscure-utp="active"] [data-testid="table-item"] h3,
+html[data-oscure-utp="active"] [data-testid="table-item"] h4 {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+/* Indicador lateral / borde izquierdo de semana activa o actual */
+html[data-oscure-utp="active"] [data-testid="table-item"][class*="border-l"],
+html[data-oscure-utp="active"] [data-testid="table-item"][style*="border-left"] {
+  border-left: 4px solid var(--oscure-accent, #6366f1) !important;
+}
+
+/* Flechas / Chevrons desplegables y otros iconos */
+html[data-oscure-utp="active"] [data-testid="table-item"] svg {
+  stroke: var(--oscure-accent-light, #a5b4fc) !important;
+  fill: none !important;
+  transition: stroke 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover svg {
+  stroke: #ffffff !important;
+}
+
+/* Contenido desplegado dentro de cada semana (sesiones, materiales, tareas) */
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [class*="collapse" i],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [class*="content" i],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [class*="body" i],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] ul,
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] li,
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [class*="bg-white"],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [style*="rgb(255, 255, 255)"],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [style*="#fff"],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [style*="white"] {
+  background-color: #12131d !important;
+  color: #cbd5e1 !important;
+  border-color: #24263a !important;
+}
+
+/* Filas de materiales y tareas dentro de la semana desplegada (sin romper layout flex) */
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [role="listitem"],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] ul > li {
+  background-color: #151624 !important;
+  border: 1px solid #26283c !important;
+  border-radius: 8px !important;
+  color: #f1f5f9 !important;
+  margin-bottom: 6px !important;
+  transition: all 0.15s ease !important;
+}
+
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [role="listitem"]:hover,
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] ul > li:hover {
+  background-color: #1c1e30 !important;
+  border-color: var(--oscure-accent, #6366f1) !important;
+}
+
+/* Enlaces limpios sin padding ni márgenes forzados */
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] a {
+  color: #f1f5f9 !important;
+  text-decoration: none !important;
+}
+
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] a:hover {
+  color: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* Badges de estado en materiales: Revisado, Vencido, etc. */
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] [class*="badge" i],
+html[data-oscure-utp="active"] [name*="SectionContentStudent" i] div:has(> svg):has(span):not([data-testid="table-item"]) {
+  background-color: #1a1c2c !important;
+  border: 1px solid #2d3047 !important;
+  color: #cbd5e1 !important;
+}
+
+/* Título de conteo: "Total de semanas (18)" */
+html[data-oscure-utp="active"] h2:has(+ div[name*="SectionContentStudent"]),
+html[data-oscure-utp="active"] [class*="Total" i],
+html[data-oscure-utp="active"] [data-main-scroll="true"] h2,
+html[data-oscure-utp="active"] [data-main-scroll="true"] h3 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}

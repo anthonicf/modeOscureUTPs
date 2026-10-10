@@ -682,32 +682,63 @@ html[data-oscure-utp="active"] [class*="esExBO" i] {
   color: #f8fafc !important;
 }
 
-/* Fila / Tarjeta interactiva de la semana (table-item) */
+/* Fila / Tarjeta interactiva de la semana (table-item) y tareas / evaluaciones (item) */
 html[data-oscure-utp="active"] [data-testid="table-item"],
-html[data-oscure-utp="active"] [data-oscure-week-block="true"] {
+html[data-oscure-utp="active"] [data-testid="item"],
+html[data-oscure-utp="active"] .sc-BOulX,
+html[data-oscure-utp="active"] .dxpKWb,
+html[data-oscure-utp="active"] [class*="BOulX"],
+html[data-oscure-utp="active"] [class*="dxpKWb"],
+html[data-oscure-utp="active"] [data-oscure-week-block="true"],
+html[data-oscure-utp="active"] [data-oscure-task-item="true"],
+html[data-oscure-utp="active"] [style*="rgb(49, 56, 69)"],
+html[data-oscure-utp="active"] [style*="rgb(49,56,69)"],
+html[data-oscure-utp="active"] [style*="#313845"] {
   background-color: #151624 !important;
   border: 1px solid #26283c !important;
-  border-radius: 10px !important;
+  border-radius: 8px !important;
   color: #f8fafc !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
   margin-bottom: 8px !important;
   transition: all 0.2s ease !important;
 }
 
-/* Efecto hover interactivo sobre las semanas */
-html[data-oscure-utp="active"] [data-testid="table-item"]:hover {
+/* Efecto hover interactivo sobre las semanas y tareas */
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover,
+html[data-oscure-utp="active"] [data-testid="item"]:hover,
+html[data-oscure-utp="active"] .sc-BOulX:hover,
+html[data-oscure-utp="active"] .dxpKWb:hover,
+html[data-oscure-utp="active"] a[href*="/homework/"]:hover [data-testid="item"] {
   background-color: #1c1d2e !important;
   border-color: var(--oscure-accent, #6366f1) !important;
   box-shadow: 0 4px 16px var(--oscure-accent-glow, rgba(99, 102, 241, 0.25)) !important;
 }
 
-/* Títulos de las semanas ("Semana 01", "Semana 02", "Información del curso") */
+/* Títulos de las semanas y tareas */
 html[data-oscure-utp="active"] [data-testid="table-item"] p,
 html[data-oscure-utp="active"] [data-testid="table-item"] span,
 html[data-oscure-utp="active"] [data-testid="table-item"] h3,
-html[data-oscure-utp="active"] [data-testid="table-item"] h4 {
+html[data-oscure-utp="active"] [data-testid="table-item"] h4,
+html[data-oscure-utp="active"] [data-testid="item"] p,
+html[data-oscure-utp="active"] [data-testid="item"] span,
+html[data-oscure-utp="active"] [data-testid="item"] h3,
+html[data-oscure-utp="active"] [data-testid="item"] h4 {
   color: #f8fafc !important;
-  font-weight: 600 !important;
+}
+
+/* Subtítulo del tipo de actividad ("Tarea no calificada", "Tarea calificada") */
+html[data-oscure-utp="active"] [data-testid="item"] span:first-of-type,
+html[data-oscure-utp="active"] .dxpKWb span:first-of-type {
+  color: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* Fechas e información de entrega ("Desde...", "Hasta...") */
+html[data-oscure-utp="active"] [data-testid="item"] div:last-child,
+html[data-oscure-utp="active"] [data-testid="item"] div:last-child span,
+html[data-oscure-utp="active"] [data-testid="item"] div:last-child p,
+html[data-oscure-utp="active"] .dxpKWb div:last-child {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
 }
 
 /* Indicador lateral / borde izquierdo de semana activa o actual */
@@ -717,13 +748,15 @@ html[data-oscure-utp="active"] [data-testid="table-item"][style*="border-left"] 
 }
 
 /* Flechas / Chevrons desplegables y otros iconos */
-html[data-oscure-utp="active"] [data-testid="table-item"] svg {
-  stroke: var(--oscure-accent-light, #a5b4fc) !important;
+html[data-oscure-utp="active"] [data-testid="table-item"] svg,
+html[data-oscure-utp="active"] [data-testid="item"] svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
   fill: none !important;
   transition: stroke 0.2s ease !important;
 }
 
-html[data-oscure-utp="active"] [data-testid="table-item"]:hover svg {
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover svg,
+html[data-oscure-utp="active"] [data-testid="item"]:hover svg {
   stroke: #ffffff !important;
 }
 
@@ -785,3 +818,447 @@ html[data-oscure-utp="active"] [data-main-scroll="true"] h3 {
   color: #ffffff !important;
   font-weight: 700 !important;
 }
+
+/* ==========================================================================
+   12. PANEL LATERAL DE NOTIFICACIONES (DRAWER / SLIDE-OVER)
+   ========================================================================== */
+
+/* Contenedor y fondo del panel de notificaciones */
+html[data-oscure-utp="active"] [data-oscure-notification-drawer="true"],
+html[data-oscure-utp="active"] div:has(> .overflow-auto > div > div > a > [class*="hCiPVT"]),
+html[data-oscure-utp="active"] div:has(> .overflow-auto > div > div > a > [class*="frDjqD"]),
+html[data-oscure-utp="active"] div:has(> div > .overflow-auto > div > div > a > [class*="hCiPVT"]),
+html[data-oscure-utp="active"] [class*="drawer" i],
+html[data-oscure-utp="active"] [class*="notification" i] {
+  background-color: #10111a !important;
+  color: #f8fafc !important;
+}
+
+/* Cabecera superior fija ("✕ Notificaciones") */
+html[data-oscure-utp="active"] div.sticky:has(h1, h2, h3),
+html[data-oscure-utp="active"] [class*="sticky"][class*="bg-neutral-04"],
+html[data-oscure-utp="active"] [data-sticky-top-overlay="true"],
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] {
+  background-color: #12131d !important;
+  border-bottom: 1px solid #222436 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+html[data-oscure-utp="active"] div.sticky:has(h1, h2, h3) h1,
+html[data-oscure-utp="active"] div.sticky:has(h1, h2, h3) h2,
+html[data-oscure-utp="active"] div.sticky:has(h1, h2, h3) h3,
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] h1,
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] h2,
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] h3 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+/* Botón de cierre (✕) */
+html[data-oscure-utp="active"] div.sticky button svg,
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] button svg {
+  color: #cbd5e1 !important;
+  stroke: #cbd5e1 !important;
+  transition: stroke 0.15s ease !important;
+}
+
+html[data-oscure-utp="active"] div.sticky button:hover svg,
+html[data-oscure-utp="active"] div[style*="height: 5.6rem"] button:hover svg {
+  stroke: #ffffff !important;
+}
+
+/* Fila de controles ("Ver no leídos" y tuerca de configuración ⚙) */
+html[data-oscure-utp="active"] .flex.items-center.justify-between,
+html[data-oscure-utp="active"] div:has(> label.switch):has(> button) {
+  color: #e2e8f0 !important;
+}
+
+html[data-oscure-utp="active"] .flex.items-center.justify-between p,
+html[data-oscure-utp="active"] .flex.items-center.justify-between span,
+html[data-oscure-utp="active"] .flex.items-center.justify-between label {
+  color: #cbd5e1 !important;
+  font-weight: 500 !important;
+}
+
+/* Icono de configuración ⚙ (Tuerca) */
+html[data-oscure-utp="active"] .flex.items-center.justify-between button svg,
+html[data-oscure-utp="active"] .flex.items-center.justify-between svg:has(path) {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+  color: var(--oscure-accent-light, #818cf8) !important;
+  transition: transform 0.2s ease, stroke 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] .flex.items-center.justify-between button:hover svg {
+  stroke: var(--oscure-accent, #6366f1) !important;
+  transform: rotate(30deg);
+}
+
+/* Encabezados de grupo de fecha ("02 oct 2026", "01 oct 2026") */
+html[data-oscure-utp="active"] .mb-lg > .flex.justify-between,
+html[data-oscure-utp="active"] .mb-lg > div:first-child:has(p, span) {
+  background-color: transparent !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+html[data-oscure-utp="active"] .mb-lg > .flex.justify-between p,
+html[data-oscure-utp="active"] .mb-lg > .flex.justify-between span {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+}
+
+html[data-oscure-utp="active"] .mb-lg > .flex.justify-between svg {
+  stroke: var(--oscure-accent-light, #a5b4fc) !important;
+}
+
+/* Filas / Tarjetas de Notificación (.hCiPVT, .sc-frDjqD) */
+html[data-oscure-utp="active"] .sc-frDjqD,
+html[data-oscure-utp="active"] .hCiPVT,
+html[data-oscure-utp="active"] [class*="frDjqD" i],
+html[data-oscure-utp="active"] [class*="hCiPVT" i],
+html[data-oscure-utp="active"] [data-oscure-notification-item="true"],
+html[data-oscure-utp="active"] a[href*="/student/courses/"] > div[class*="py-xlg"] {
+  background-color: #151624 !important;
+  border-bottom: 1px solid #24263a !important;
+  color: #f8fafc !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease !important;
+}
+
+/* Efecto hover interactivo sobre cada notificación */
+html[data-oscure-utp="active"] a:hover > .sc-frDjqD,
+html[data-oscure-utp="active"] a:hover > .hCiPVT,
+html[data-oscure-utp="active"] a:hover > [class*="frDjqD" i],
+html[data-oscure-utp="active"] a:hover > [class*="hCiPVT" i],
+html[data-oscure-utp="active"] .hCiPVT:hover,
+html[data-oscure-utp="active"] [class*="frDjqD" i]:hover,
+html[data-oscure-utp="active"] [data-oscure-notification-item="true"]:hover {
+  background-color: #1c1e30 !important;
+  border-bottom-color: var(--oscure-accent, #6366f1) !important;
+}
+
+/* Título de la notificación ("Material", "Evaluación", "Anuncio", "Zoom") */
+html[data-oscure-utp="active"] [class*="hCiPVT" i] p:first-of-type,
+html[data-oscure-utp="active"] [class*="hCiPVT" i] span:first-of-type,
+html[data-oscure-utp="active"] [class*="frDjqD" i] p:first-of-type,
+html[data-oscure-utp="active"] [class*="frDjqD" i] span:first-of-type,
+html[data-oscure-utp="active"] [class*="hCiPVT" i] h4,
+html[data-oscure-utp="active"] [class*="hCiPVT" i] h5,
+html[data-oscure-utp="active"] [class*="frDjqD" i] h4,
+html[data-oscure-utp="active"] [class*="frDjqD" i] h5 {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+/* Texto de descripción / contenido de la notificación (alto contraste y nitidez) */
+html[data-oscure-utp="active"] [class*="hCiPVT" i] p,
+html[data-oscure-utp="active"] [class*="hCiPVT" i] span,
+html[data-oscure-utp="active"] [class*="frDjqD" i] p,
+html[data-oscure-utp="active"] [class*="frDjqD" i] span {
+  color: #cbd5e1 !important;
+}
+
+/* Tiempo relativo ("Hace alrededor de 1 hora", "Ayer") */
+html[data-oscure-utp="active"] [class*="hCiPVT" i] [class*="time" i],
+html[data-oscure-utp="active"] [class*="hCiPVT" i] [class*="date" i],
+html[data-oscure-utp="active"] [class*="frDjqD" i] [class*="time" i],
+html[data-oscure-utp="active"] [class*="frDjqD" i] [class*="date" i],
+html[data-oscure-utp="active"] [class*="hCiPVT" i] .flex.justify-between span:last-child {
+  color: var(--oscure-accent-light, #818cf8) !important;
+  font-size: 0.85rem !important;
+  font-weight: 500 !important;
+}
+
+/* Iconos de notificación (Material, Evaluación, Anuncio, Zoom) */
+html[data-oscure-utp="active"] [class*="hCiPVT" i] svg,
+html[data-oscure-utp="active"] [class*="frDjqD" i] svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* Enlaces sin subrayado */
+html[data-oscure-utp="active"] a:has(> [class*="hCiPVT" i]),
+html[data-oscure-utp="active"] a:has(> [class*="frDjqD" i]) {
+  text-decoration: none !important;
+}
+
+/* ==========================================================================
+   13. PERFIL DE USUARIO EN CABECERA (Hola, [Nombre] | Estudiante)
+   ========================================================================== */
+
+/* Barra de navegación superior fija */
+html[data-oscure-utp="active"] [data-sticky-top-overlay="true"],
+html[data-oscure-utp="active"] .sc-EHOje,
+html[data-oscure-utp="active"] .heDpQP {
+  background-color: #12131d !important;
+  border-bottom: 1px solid #222436 !important;
+  color: #f8fafc !important;
+}
+
+/* Contenedor del saludo y nombre de usuario */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [style*="color"],
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .flex.flex-row,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .text-body {
+  color: #cbd5e1 !important;
+}
+
+/* El nombre del estudiante con el color de acento personalizado */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .font-bold,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="font-bold"],
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .text-body.font-bold,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [data-oscure-user-name="true"] {
+  color: var(--oscure-accent-light, #818cf8) !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Efecto hover interactivo sobre el nombre */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"]:hover .font-bold,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"]:hover [class*="font-bold"] {
+  color: #ffffff !important;
+  text-shadow: 0 0 12px var(--oscure-accent-glow, rgba(99, 102, 241, 0.45)) !important;
+}
+
+/* Rol de usuario ("Estudiante") */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .flex-row-reverse span,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="row-reverse"] span {
+  color: #94a3b8 !important;
+  font-size: 0.8rem !important;
+}
+
+/* Flecha / Chevron desplegable del avatar */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] cc-icon,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [data-testid="cc-icon"],
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] svg {
+  color: var(--oscure-accent-light, #818cf8) !important;
+  fill: currentColor !important;
+}
+
+/* Menú flotante desplegable del perfil ("Cerrar sesión") */
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .sc-bZQynM,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .cIHFvM,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="cIHFvM"],
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="shadow"][class*="rounded"] {
+  background-color: #161724 !important;
+  border: 1px solid #282a3e !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.75) !important;
+  color: #f8fafc !important;
+  border-radius: 8px !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="shadow"][class*="rounded"] * {
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="shadow"][class*="rounded"] svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="shadow"][class*="rounded"] div:hover,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="shadow"][class*="rounded"] a:hover {
+  background-color: #202234 !important;
+  color: #ffffff !important;
+}
+
+/* ==========================================================================
+   14. SECCIÓN DE CHATS Y MENSAJERÍA (/student/messages)
+   ========================================================================== */
+
+/* Fondo general de la vista de mensajes y contenedor de conversación */
+html[data-oscure-utp="active"] main:has([data-testid="message"]),
+html[data-oscure-utp="active"] div:has(> * > [data-testid="message"]),
+html[data-oscure-utp="active"] [class*="sc-iBNzrS"],
+html[data-oscure-utp="active"] .sc-iBNzrS,
+html[data-oscure-utp="active"] .jYQAbt {
+  background-color: transparent !important;
+}
+
+/* Burbujas de mensaje base (recibidas o generales) */
+html[data-oscure-utp="active"] [data-testid="message"],
+html[data-oscure-utp="active"] .sc-ilQDRA,
+html[data-oscure-utp="active"] .fYYGRc,
+html[data-oscure-utp="active"] [class*="ilQDRA"],
+html[data-oscure-utp="active"] [class*="fYYGRc"],
+html[data-oscure-utp="active"] [style*="rgb(230, 235, 241)"],
+html[data-oscure-utp="active"] [style*="rgb(230,235,241)"],
+html[data-oscure-utp="active"] [style*="#e6ebf1"],
+html[data-oscure-utp="active"] [data-oscure-chat-message="true"] {
+  background-color: #1a1c2c !important;
+  color: #f1f5f9 !important;
+  border: 1px solid #282a3e !important;
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* Textos dentro de la burbuja de mensaje */
+html[data-oscure-utp="active"] [data-testid="message"] p,
+html[data-oscure-utp="active"] [data-testid="message"] span,
+html[data-oscure-utp="active"] .fYYGRc p,
+html[data-oscure-utp="active"] .fYYGRc span {
+  color: #f1f5f9 !important;
+}
+
+/* Burbujas de mensajes enviados por el usuario ("Tú", alineados a la derecha con items-end) */
+html[data-oscure-utp="active"] .items-end [data-testid="message"],
+html[data-oscure-utp="active"] [class*="items-end"] [data-testid="message"],
+html[data-oscure-utp="active"] .items-end .fYYGRc,
+html[data-oscure-utp="active"] [class*="items-end"] .fYYGRc,
+html[data-oscure-utp="active"] .items-end .sc-ilQDRA,
+html[data-oscure-utp="active"] [class*="items-end"] .sc-ilQDRA,
+html[data-oscure-utp="active"] [data-oscure-chat-message-sent="true"] {
+  background-color: #1e2238 !important;
+  border: 1px solid var(--oscure-accent, #6366f1) !important;
+  color: #ffffff !important;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.35) !important;
+}
+
+html[data-oscure-utp="active"] .items-end [data-testid="message"] *,
+html[data-oscure-utp="active"] [class*="items-end"] [data-testid="message"] * {
+  color: #ffffff !important;
+}
+
+/* Archivos adjuntos y enlaces de descarga dentro del mensaje */
+html[data-oscure-utp="active"] [data-testid="message"] a,
+html[data-oscure-utp="active"] [data-testid="message"] [class*="attachment" i],
+html[data-oscure-utp="active"] [data-testid="message"] [class*="download" i],
+html[data-oscure-utp="active"] .fYYGRc a {
+  color: var(--oscure-accent-light, #818cf8) !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="message"] a:hover {
+  color: #ffffff !important;
+  text-decoration: underline !important;
+}
+
+/* Iconos dentro de las tarjetas de archivo / adjuntos (como el ícono de descarga) */
+html[data-oscure-utp="active"] [data-testid="message"] svg,
+html[data-oscure-utp="active"] .fYYGRc svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+  fill: none !important;
+}
+
+/* Autor y fecha/hora del mensaje ("Tú, 7:55 pm", "Docente, 7:51 pm") */
+html[data-oscure-utp="active"] [data-testid="author"],
+html[data-oscure-utp="active"] .sc-hJwwgy,
+html[data-oscure-utp="active"] .eYcVyx,
+html[data-oscure-utp="active"] [class*="hJwwgy"],
+html[data-oscure-utp="active"] [class*="eYcVyx"],
+html[data-oscure-utp="active"] [data-oscure-chat-author="true"] {
+  color: #94a3b8 !important;
+  font-size: 0.8rem !important;
+}
+
+/* Separadores de fecha ("26 septiembre 2026") */
+html[data-oscure-utp="active"] div:has(> [class*="date"]),
+html[data-oscure-utp="active"] [class*="divider"],
+html[data-oscure-utp="active"] span.text-neutral-03 {
+  color: #94a3b8 !important;
+}
+
+/* Barra inferior para escribir mensajes */
+html[data-oscure-utp="active"] div:has(> textarea[placeholder*="mensaje" i]),
+html[data-oscure-utp="active"] div:has(> input[placeholder*="mensaje" i]) {
+  background-color: #12131d !important;
+  border-top: 1px solid #222436 !important;
+}
+
+html[data-oscure-utp="active"] textarea[placeholder*="mensaje" i],
+html[data-oscure-utp="active"] input[placeholder*="mensaje" i] {
+  background-color: #181a28 !important;
+  border: 1px solid #282a3e !important;
+  color: #f8fafc !important;
+  border-radius: 8px !important;
+}
+
+html[data-oscure-utp="active"] textarea[placeholder*="mensaje" i]::placeholder,
+html[data-oscure-utp="active"] input[placeholder*="mensaje" i]::placeholder {
+  color: #64748b !important;
+}
+
+/* Iconos de clip / adjuntos y botón de enviar */
+html[data-oscure-utp="active"] button:has(svg):hover svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Barra lateral de conversaciones y chats ([data-testid="sidebar-message"])
+   -------------------------------------------------------------------------- */
+
+/* Contenedor general de la lista lateral */
+html[data-oscure-utp="active"] section[data-testid="sidebar-message"],
+html[data-oscure-utp="active"] [data-testid="sidebar-message"],
+html[data-oscure-utp="active"] .sc-cTnXXA,
+html[data-oscure-utp="active"] [class*="cTnXXA"],
+html[data-oscure-utp="active"] .sc-fdcRnX,
+html[data-oscure-utp="active"] [class*="fdcRnX"] {
+  background-color: #12131d !important;
+  border-right: 1px solid #222436 !important;
+}
+
+/* Cabecera / Buscador en la barra lateral */
+html[data-oscure-utp="active"] .sc-dJjlPf,
+html[data-oscure-utp="active"] [class*="dJjlPf"] {
+  background-color: #12131d !important;
+  border-bottom: 1px solid #222436 !important;
+}
+
+/* Elementos / Tarjetas de conversación en la lista lateral */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [role="button"],
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .sc-gyhKFA,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [class*="gyhKFA"],
+html[data-oscure-utp="active"] [data-oscure-chat-item="true"] {
+  background-color: transparent !important;
+  border-left: 4px solid transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Hover sobre cualquier conversación */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [role="button"]:hover,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .sc-gyhKFA:hover,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [class*="gyhKFA"]:hover {
+  background-color: #181928 !important;
+}
+
+/* Elemento de conversación ACTIVO / SELECCIONADO (.hAbBOz) */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [role="button"].hAbBOz,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [role="button"][class*="hAbBOz"],
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .hAbBOz,
+html[data-oscure-utp="active"] .hAbBOz,
+html[data-oscure-utp="active"] [class*="hAbBOz"],
+html[data-oscure-utp="active"] [data-oscure-chat-item-active="true"] {
+  background-color: #1c1e30 !important;
+  border-left: 4px solid var(--oscure-accent, #6366f1) !important;
+}
+
+/* Tipografía de la conversación activa */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .hAbBOz span,
+html[data-oscure-utp="active"] [class*="hAbBOz"] span {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .hAbBOz p,
+html[data-oscure-utp="active"] [class*="hAbBOz"] p {
+  color: #cbd5e1 !important;
+}
+
+/* Tipografía de conversaciones normales / inactivas */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] span.truncate,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] span[class*="truncate"] {
+  color: #f1f5f9 !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] p.truncate,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] p[class*="truncate"] {
+  color: #94a3b8 !important;
+}
+
+/* Separador o contenedor entre elementos de la lista */
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] .sc-fCVlmB,
+html[data-oscure-utp="active"] [data-testid="sidebar-message"] [class*="fCVlmB"] {
+  border-bottom: 1px solid #1c1d2e !important;
+}
+
+
+

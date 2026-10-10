@@ -1,16 +1,22 @@
-// Popup Script - Lógica de control de la extensión Oscure UTP
+// Popup Script - Lógica y dinamismo de la extensión Oscure UTP (Glassmorphism Premium)
 
 document.addEventListener('DOMContentLoaded', async () => {
   const themeToggle = document.getElementById('themeToggle');
   const toggleStatusText = document.getElementById('toggleStatusText');
+  const themeStatusDot = document.getElementById('themeStatusDot');
+
   const bannerToggle = document.getElementById('bannerToggle');
   const bannerStatusText = document.getElementById('bannerStatusText');
+  const bannerStatusDot = document.getElementById('bannerStatusDot');
+
   const brightnessSlider = document.getElementById('brightnessSlider');
   const brightnessVal = document.getElementById('brightnessVal');
   const contrastSlider = document.getElementById('contrastSlider');
   const contrastVal = document.getElementById('contrastVal');
   const resetBtn = document.getElementById('resetBtn');
+
   const siteBadge = document.getElementById('siteBadge');
+  const siteBadgeText = document.getElementById('siteBadgeText');
 
   // Elementos de Color de Acento
   const accentNameEl = document.getElementById('accentName');
@@ -18,9 +24,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   const customColorPicker = document.getElementById('customColorPicker');
   const customColorWrapper = customColorPicker ? customColorPicker.parentElement : null;
 
+  // Actualiza el relleno visual de progreso del slider en tiempo real
+  function updateSliderFill(slider) {
+    if (!slider) return;
+    const min = parseFloat(slider.min) || 0;
+    const max = parseFloat(slider.max) || 100;
+    const val = parseFloat(slider.value) || 0;
+    const pct = Math.min(100, Math.max(0, ((val - min) / (max - min)) * 100));
+    slider.style.setProperty('--slider-fill', `${pct}%`);
+  }
+
   // Paleta de colores helpers
   function hexToRgb(hex) {
-    let c = hex.replace('#', '');
+    let c = (hex || '#6366f1').replace('#', '');
     if (c.length === 3) c = c.split('').map(x => x + x).join('');
     const num = parseInt(c, 16);
     return {
@@ -55,6 +71,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.documentElement.style.setProperty('--popup-accent-light', palette.light);
     document.documentElement.style.setProperty('--popup-accent-glow', palette.glow);
     document.documentElement.style.setProperty('--popup-accent-subtle', palette.subtle);
+
+    // Refrescar el degradado de los sliders con el nuevo acento
+    updateSliderFill(brightnessSlider);
+    updateSliderFill(contrastSlider);
   }
 
   function setAccentActiveUI(selectedHex, selectedName = 'Personalizado') {
@@ -84,21 +104,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Detectar la pestaña actual para actualizar el indicador de sitio
+  // Detectar la pestaña actual para actualizar el indicador de sitio y LED
   try {
     const [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (currentTab && currentTab.url) {
       const url = currentTab.url;
+      const statusDot = siteBadge ? siteBadge.querySelector('.status-dot') : null;
+
       if (url.includes('sso.utp.edu.pe')) {
-        siteBadge.textContent = 'SSO UTP';
+        if (siteBadgeText) siteBadgeText.textContent = 'SSO UTP';
+        if (siteBadge) siteBadge.classList.remove('inactive');
       } else if (url.includes('class.utp.edu.pe')) {
-        siteBadge.textContent = 'UTP+CLASS';
+        if (siteBadgeText) siteBadgeText.textContent = 'UTP+CLASS';
+        if (siteBadge) siteBadge.classList.remove('inactive');
       } else if (url.includes('canvas.utp.edu.pe')) {
-        siteBadge.textContent = 'CANVAS';
+        if (siteBadgeText) siteBadgeText.textContent = 'CANVAS';
+        if (siteBadge) siteBadge.classList.remove('inactive');
       } else if (url.includes('utp.edu.pe')) {
-        siteBadge.textContent = 'UTP';
+        if (siteBadgeText) siteBadgeText.textContent = 'UTP';
+        if (siteBadge) siteBadge.classList.remove('inactive');
       } else {
-        siteBadge.textContent = 'EXTERNO';
+        if (siteBadgeText) siteBadgeText.textContent = 'EXTERNO';
+        if (siteBadge) siteBadge.classList.add('inactive');
       }
     }
   } catch (error) {
@@ -126,10 +153,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const brightness = settings.brightness ?? 100;
   const contrast = settings.contrast ?? 100;
-  const accentColor = settings.accentColor || '#6366f1';
-  const accentName = settings.accentName || 'Índigo';
+  const accentColor = settings.accentColor || '#00C2FF';
+  const accentName = settings.accentName || 'Cian';
 
-  // Aplicar valores a la interfaz
+  // Aplicar valores iniciales a la interfaz
   themeToggle.checked = isEnabled;
   updateStatusDisplay(isEnabled);
 
@@ -138,9 +165,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   brightnessSlider.value = brightness;
   brightnessVal.textContent = `${brightness}%`;
+  updateSliderFill(brightnessSlider);
 
   contrastSlider.value = contrast;
   contrastVal.textContent = `${contrast}%`;
+  updateSliderFill(contrastSlider);
 
   setAccentActiveUI(accentColor, accentName);
 
@@ -185,6 +214,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Slider de Brillo
   brightnessSlider.addEventListener('input', (e) => {
     brightnessVal.textContent = `${e.target.value}%`;
+    updateSliderFill(brightnessSlider);
   });
 
   brightnessSlider.addEventListener('change', async (e) => {
@@ -194,6 +224,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Slider de Contraste
   contrastSlider.addEventListener('input', (e) => {
     contrastVal.textContent = `${e.target.value}%`;
+    updateSliderFill(contrastSlider);
   });
 
   contrastSlider.addEventListener('change', async (e) => {
@@ -204,11 +235,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   resetBtn.addEventListener('click', async () => {
     brightnessSlider.value = 100;
     brightnessVal.textContent = '100%';
+    updateSliderFill(brightnessSlider);
+
     contrastSlider.value = 100;
     contrastVal.textContent = '100%';
+    updateSliderFill(contrastSlider);
 
-    const defaultAccent = '#6366f1';
-    const defaultAccentName = 'Índigo';
+    const defaultAccent = '#00C2FF';
+    const defaultAccentName = 'Cian';
     setAccentActiveUI(defaultAccent, defaultAccentName);
 
     await chrome.storage.local.set({
@@ -223,9 +257,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (enabled) {
       toggleStatusText.textContent = 'Activado';
       toggleStatusText.classList.remove('disabled');
+      if (themeStatusDot) themeStatusDot.classList.remove('disabled');
     } else {
       toggleStatusText.textContent = 'Desactivado';
       toggleStatusText.classList.add('disabled');
+      if (themeStatusDot) themeStatusDot.classList.add('disabled');
     }
   }
 
@@ -233,9 +269,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (hide) {
       bannerStatusText.textContent = 'Oculto';
       bannerStatusText.classList.remove('disabled');
+      if (bannerStatusDot) bannerStatusDot.classList.remove('disabled');
     } else {
       bannerStatusText.textContent = 'Visible';
       bannerStatusText.classList.add('disabled');
+      if (bannerStatusDot) bannerStatusDot.classList.add('disabled');
     }
   }
 });

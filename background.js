@@ -6,8 +6,8 @@ const DEFAULT_SETTINGS = {
   hideBanner: true,
   brightness: 100,
   contrast: 100,
-  accentColor: '#6366f1',
-  accentName: 'Índigo'
+  accentColor: '#00C2FF',
+  accentName: 'Cian'
 };
 
 // Inicialización al instalar o actualizar la extensión
@@ -43,7 +43,7 @@ chrome.runtime.onInstalled.addListener(async () => {
 });
 
 // Actualiza el badge visual en el icono de la barra de extensiones
-async function updateBadge(enabled, accentColor = '#6366f1') {
+async function updateBadge(enabled, accentColor = '#00C2FF') {
   try {
     if (enabled) {
       await chrome.action.setBadgeText({ text: 'ON' });
@@ -64,7 +64,7 @@ chrome.storage.onChanged.addListener(async (changes, area) => {
   if (area !== 'local') return;
 
   if (changes.oscureEnabled || changes.accentColor) {
-    const { oscureEnabled = true, accentColor = '#6366f1' } = await chrome.storage.local.get(['oscureEnabled', 'accentColor']);
+    const { oscureEnabled = true, accentColor = '#00C2FF' } = await chrome.storage.local.get(['oscureEnabled', 'accentColor']);
     await updateBadge(oscureEnabled, accentColor);
   }
 });
@@ -72,7 +72,7 @@ chrome.storage.onChanged.addListener(async (changes, area) => {
 // Manejo del comando / atajo de teclado (Alt + Shift + D)
 chrome.commands.onCommand.addListener(async (command) => {
   if (command === 'toggle-dark-mode') {
-    const { oscureEnabled = true, accentColor = '#6366f1' } = await chrome.storage.local.get(['oscureEnabled', 'accentColor']);
+    const { oscureEnabled = true, accentColor = '#00C2FF' } = await chrome.storage.local.get(['oscureEnabled', 'accentColor']);
     const newState = !oscureEnabled;
     await chrome.storage.local.set({ oscureEnabled: newState });
     await updateBadge(newState, accentColor);

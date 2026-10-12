@@ -3,6 +3,7 @@
    ========================================================================== */
 
 :root {
+  color-scheme: dark;
   --oscure-bg-base: #101014;
   --oscure-bg-surface: #16161c;
   --oscure-bg-card: #1e1e26;

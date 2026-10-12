@@ -3,11 +3,9 @@
 document.addEventListener('DOMContentLoaded', async () => {
   const themeToggle = document.getElementById('themeToggle');
   const toggleStatusText = document.getElementById('toggleStatusText');
-  const themeStatusDot = document.getElementById('themeStatusDot');
 
   const bannerToggle = document.getElementById('bannerToggle');
   const bannerStatusText = document.getElementById('bannerStatusText');
-  const bannerStatusDot = document.getElementById('bannerStatusDot');
 
   const brightnessSlider = document.getElementById('brightnessSlider');
   const brightnessVal = document.getElementById('brightnessVal');
@@ -36,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Paleta de colores helpers
   function hexToRgb(hex) {
-    let c = (hex || '#6366f1').replace('#', '');
+    let c = (hex || '#00C2FF').replace('#', '');
     if (c.length === 3) c = c.split('').map(x => x + x).join('');
     const num = parseInt(c, 16);
     return {
@@ -104,21 +102,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // Detectar la pestaña actual para actualizar el indicador de sitio y LED
+  // Detectar la pestaña actual para actualizar el indicador de sitio (manejo defensivo)
   try {
     const [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (currentTab && currentTab.url) {
       const url = currentTab.url;
-      const statusDot = siteBadge ? siteBadge.querySelector('.status-dot') : null;
-
       if (url.includes('sso.utp.edu.pe')) {
         if (siteBadgeText) siteBadgeText.textContent = 'SSO UTP';
         if (siteBadge) siteBadge.classList.remove('inactive');
       } else if (url.includes('class.utp.edu.pe')) {
         if (siteBadgeText) siteBadgeText.textContent = 'UTP+CLASS';
-        if (siteBadge) siteBadge.classList.remove('inactive');
-      } else if (url.includes('canvas.utp.edu.pe')) {
-        if (siteBadgeText) siteBadgeText.textContent = 'CANVAS';
         if (siteBadge) siteBadge.classList.remove('inactive');
       } else if (url.includes('utp.edu.pe')) {
         if (siteBadgeText) siteBadgeText.textContent = 'UTP';
@@ -127,9 +120,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (siteBadgeText) siteBadgeText.textContent = 'EXTERNO';
         if (siteBadge) siteBadge.classList.add('inactive');
       }
+    } else {
+      // Si no hay acceso a URL (sin activeTab), mostrar estado funcional del tema
+      if (siteBadgeText) siteBadgeText.textContent = 'ACTIVO';
+      if (siteBadge) siteBadge.classList.remove('inactive');
     }
   } catch (error) {
-    console.debug('No se pudo leer la pestaña actual:', error);
+    console.debug('Información de pestaña no disponible:', error);
   }
 
   // Cargar estado guardado desde chrome.storage.local
@@ -138,19 +135,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     'hideBanner',
     'brightness',
     'contrast',
-    'bannerInitialized_v2',
     'accentColor',
     'accentName'
   ]);
   const isEnabled = settings.oscureEnabled !== false;
-  
-  // Ocultar publicidad ACTIVADO por defecto
-  let hideBanner = settings.hideBanner;
-  if (!settings.bannerInitialized_v2 || hideBanner === undefined) {
-    hideBanner = true;
-    await chrome.storage.local.set({ hideBanner: true, bannerInitialized_v2: true });
-  }
-
+  const hideBanner = settings.hideBanner !== false;
   const brightness = settings.brightness ?? 100;
   const contrast = settings.contrast ?? 100;
   const accentColor = settings.accentColor || '#00C2FF';
@@ -253,15 +242,46 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
+  // Sincronización en tiempo real: escucha cambios provocados por atajo de teclado (Alt+Shift+D)
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area !== 'local') return;
+
+    if (changes.oscureEnabled !== undefined) {
+      const val = changes.oscureEnabled.newValue !== false;
+      themeToggle.checked = val;
+      updateStatusDisplay(val);
+    }
+    if (changes.hideBanner !== undefined) {
+      const val = changes.hideBanner.newValue !== false;
+      bannerToggle.checked = val;
+      updateBannerDisplay(val);
+    }
+    if (changes.brightness !== undefined) {
+      const val = changes.brightness.newValue ?? 100;
+      brightnessSlider.value = val;
+      brightnessVal.textContent = `${val}%`;
+      updateSliderFill(brightnessSlider);
+    }
+    if (changes.contrast !== undefined) {
+      const val = changes.contrast.newValue ?? 100;
+      contrastSlider.value = val;
+      contrastVal.textContent = `${val}%`;
+      updateSliderFill(contrastSlider);
+    }
+    if (changes.accentColor !== undefined || changes.accentName !== undefined) {
+      const color = changes.accentColor ? changes.accentColor.newValue : customColorPicker?.value;
+      const name = changes.accentName ? changes.accentName.newValue : 'Personalizado';
+      if (color) setAccentActiveUI(color, name);
+    }
+  });
+
   function updateStatusDisplay(enabled) {
     if (enabled) {
       toggleStatusText.textContent = 'Activado';
       toggleStatusText.classList.remove('disabled');
-      if (themeStatusDot) themeStatusDot.classList.remove('disabled');
     } else {
       toggleStatusText.textContent = 'Desactivado';
       toggleStatusText.classList.add('disabled');
-      if (themeStatusDot) themeStatusDot.classList.add('disabled');
     }
   }
 
@@ -269,11 +289,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (hide) {
       bannerStatusText.textContent = 'Oculto';
       bannerStatusText.classList.remove('disabled');
-      if (bannerStatusDot) bannerStatusDot.classList.remove('disabled');
     } else {
       bannerStatusText.textContent = 'Visible';
       bannerStatusText.classList.add('disabled');
-      if (bannerStatusDot) bannerStatusDot.classList.add('disabled');
     }
   }
 });
+

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Oscure UTP - Modo Oscuro para UTP+class & SSO",
-  "version": "1.0.0",
-  "description": "Modo oscuro elegante, fluido y de alto contraste para UTP+class, SSO UTP y portales de la Universidad Tecnológica del Perú.",
+  "version": "1.0.1",
+  "description": "Modo oscuro elegante, fluido y de alto contraste para UTP+class y SSO UTP.",
   "icons": {
     "16": "icons/icon-16.png",
     "48": "icons/icon-48.png",
@@ -18,19 +18,19 @@
     "default_title": "Oscure UTP"
   },
   "permissions": [
-    "storage",
-    "activeTab"
+    "storage"
   ],
-  "host_permissions": [
-    "*://*.utp.edu.pe/*"
-  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'; base-uri 'none';"
+  },
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": [
-        "*://*.utp.edu.pe/*"
+        "https://class.utp.edu.pe/*",
+        "https://sso.utp.edu.pe/*"
       ],
       "css": [
         "content/dark-core.css",
@@ -52,3 +52,4 @@
     }
   }
 }
+

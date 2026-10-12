@@ -1260,5 +1260,152 @@ html[data-oscure-utp="active"] [data-testid="sidebar-message"] [class*="fCVlmB"]
   border-bottom: 1px solid #1c1d2e !important;
 }
 
+/* ==========================================================================
+   20. OCULTACIÓN DECLARATIVA DEL BANNER DE ANUNCIOS (CSS NATIVO :has())
+   ========================================================================== */
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-slider,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-list,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-track,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-slide,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-dots,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .slick-arrow,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] [class*="slick-slider"],
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] [class*="slick-initialized"],
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] [data-oscure-banner="true"],
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .MVAic,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .dqpxyc,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .sc-bAeIUo,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .jXktXU,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .swiper,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] .swiper-container,
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] div:has(> .slick-slider),
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] div:has(> * > .slick-slider):not(:has(h2)):not(:has(h3)):not(:has(select)),
+html[data-oscure-utp="active"][data-oscure-hide-banner="true"] div:has(> * > * > .slick-slider):not(:has(h2)):not(:has(h3)):not(:has(select)) {
+  display: none !important;
+  height: 0px !important;
+  min-height: 0px !important;
+  max-height: 0px !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  border: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+}
+
+/* ==========================================================================
+   21. TARJETAS DE CONTENIDO, SEMANAS Y COMPONENTES DINÁMICOS
+   ========================================================================== */
+html[data-oscure-utp="active"] .sc-dcOKER,
+html[data-oscure-utp="active"] .DIRcG,
+html[data-oscure-utp="active"] [class*="DIRcG"],
+html[data-oscure-utp="active"] [class*="dcOKER"],
+html[data-oscure-utp="active"] [data-oscure-content-card="true"] {
+  background-color: #12131d !important;
+  color: #f8fafc !important;
+  border: 1px solid #24263a !important;
+  border-radius: 14px !important;
+}
+
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="rgb(255, 255, 255)"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="#fff"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [style*="white"],
+html[data-oscure-utp="active"] [data-main-scroll="true"] [class*="absolute"][style*="255, 255, 255"] {
+  background-color: #12131d !important;
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"],
+html[data-oscure-utp="active"] [data-testid="item"],
+html[data-oscure-utp="active"] .sc-BOulX,
+html[data-oscure-utp="active"] .dxpKWb,
+html[data-oscure-utp="active"] [class*="BOulX"],
+html[data-oscure-utp="active"] [class*="dxpKWb"] {
+  background-color: #151624 !important;
+  border: 1px solid #26283c !important;
+  border-radius: 8px !important;
+  color: #f8fafc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25) !important;
+  transition: all 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover,
+html[data-oscure-utp="active"] [data-testid="item"]:hover,
+html[data-oscure-utp="active"] .sc-BOulX:hover,
+html[data-oscure-utp="active"] .dxpKWb:hover,
+html[data-oscure-utp="active"] a[href*="/homework/"]:hover [data-testid="item"] {
+  background-color: #1c1d2e !important;
+  border-color: var(--oscure-accent, #6366f1) !important;
+  box-shadow: 0 4px 16px var(--oscure-accent-glow, rgba(99, 102, 241, 0.25)) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"] p,
+html[data-oscure-utp="active"] [data-testid="table-item"] span,
+html[data-oscure-utp="active"] [data-testid="table-item"] h3,
+html[data-oscure-utp="active"] [data-testid="table-item"] h4,
+html[data-oscure-utp="active"] [data-testid="item"] p,
+html[data-oscure-utp="active"] [data-testid="item"] span,
+html[data-oscure-utp="active"] [data-testid="item"] h3,
+html[data-oscure-utp="active"] [data-testid="item"] h4 {
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="item"] span:first-of-type,
+html[data-oscure-utp="active"] .dxpKWb span:first-of-type {
+  color: var(--oscure-accent-light, #818cf8) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"][class*="border-l"],
+html[data-oscure-utp="active"] [data-testid="table-item"][style*="border-left"] {
+  border-left: 4px solid var(--oscure-accent, #6366f1) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"] svg,
+html[data-oscure-utp="active"] [data-testid="item"] svg {
+  stroke: var(--oscure-accent-light, #818cf8) !important;
+  transition: stroke 0.2s ease !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="table-item"]:hover svg,
+html[data-oscure-utp="active"] [data-testid="item"]:hover svg {
+  stroke: #ffffff !important;
+}
+
+/* ==========================================================================
+   22. NOTIFICACIONES Y PERFIL DE USUARIO
+   ========================================================================== */
+html[data-oscure-utp="active"] .sc-frDjqD,
+html[data-oscure-utp="active"] .hCiPVT,
+html[data-oscure-utp="active"] [class*="frDjqD"],
+html[data-oscure-utp="active"] [class*="hCiPVT"],
+html[data-oscure-utp="active"] a[href*="/student/courses/"] > div[class*="py-xlg"] {
+  background-color: #151624 !important;
+  border-bottom: 1px solid #24263a !important;
+  color: #f8fafc !important;
+}
+
+html[data-oscure-utp="active"] .hCiPVT:hover,
+html[data-oscure-utp="active"] [class*="frDjqD"]:hover,
+html[data-oscure-utp="active"] a:hover > .hCiPVT,
+html[data-oscure-utp="active"] a:hover > [class*="frDjqD"] {
+  background-color: #1c1e30 !important;
+  border-bottom-color: var(--oscure-accent, #6366f1) !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [style*="color"],
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .flex.flex-row,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .text-body {
+  color: #cbd5e1 !important;
+}
+
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] .font-bold,
+html[data-oscure-utp="active"] [data-testid="name-user-avatar"] [class*="font-bold"] {
+  color: var(--oscure-accent-light, #818cf8) !important;
+  font-weight: 700 !important;
+}
+
+
 
 

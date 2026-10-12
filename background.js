@@ -17,17 +17,13 @@ chrome.runtime.onInstalled.addListener(async () => {
     'hideBanner',
     'brightness',
     'contrast',
-    'bannerInitialized_v2',
     'accentColor',
     'accentName'
   ]);
   const toSet = {};
 
   if (current.oscureEnabled === undefined) toSet.oscureEnabled = DEFAULT_SETTINGS.oscureEnabled;
-  if (current.hideBanner === undefined || !current.bannerInitialized_v2) {
-    toSet.hideBanner = true;
-    toSet.bannerInitialized_v2 = true;
-  }
+  if (current.hideBanner === undefined) toSet.hideBanner = DEFAULT_SETTINGS.hideBanner;
   if (current.brightness === undefined) toSet.brightness = DEFAULT_SETTINGS.brightness;
   if (current.contrast === undefined) toSet.contrast = DEFAULT_SETTINGS.contrast;
   if (current.accentColor === undefined) toSet.accentColor = DEFAULT_SETTINGS.accentColor;
